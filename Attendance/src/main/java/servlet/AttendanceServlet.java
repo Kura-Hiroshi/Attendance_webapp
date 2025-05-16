@@ -1,11 +1,24 @@
 package servlet;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import model.AttendanceLogic;
+import model.Company;
+import model.Employee;
 
 /**
  * Servlet implementation class AttendanceServlet
@@ -13,29 +26,63 @@ import java.io.IOException;
 @WebServlet("/AttendanceServlet")
 public class AttendanceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final ObjectMapper objectMapper = new ObjectMapper();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AttendanceServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/attendance.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//本来セッションスコープから取得するCompanyインスタンスを作成
+		Company company = new Company("xxxxcompany", "xxxx株式会社", "1234", "1234");
+		String msg = null;
+		
+		//フォームの入力値を取得する
+		JsonNode jsonNode;
+        try (BufferedReader reader = request.getReader()) {
+            jsonNode = objectMapper.readTree(reader);
+        }
+        
+        int employeeId = jsonNode.has("employee_id") ? Integer.valueOf(jsonNode.get("employee_id").asInt()) : 0;
+        String pass =jsonNode.has("pass") ? jsonNode.get("pass").asText() : null;
+		Employee employee = new Employee(employeeId, company.getId(),pass);
+		
+		String eventType = jsonNode.has("event_type") ? jsonNode.get("event_type").asText():null; 
+        
+		//データベースへの登録処理
+		try {
+			msg = AttendanceLogic.execute(employee, eventType);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			msg = "登録に失敗しました";
+		}
+        
+		
+		//登録処理の結果に応じて分岐する
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		if(msg == null) {
+
+		        // JSONとしてクライアントに返す
+			Map<String, Object> data = new HashMap<>();
+			data.put("success", true);
+		    objectMapper.writeValue(response.getWriter(), data);
+		}else {
+			Map<String, Object> data = new HashMap<>();
+			data.put("success", false);
+			data.put("msg", msg);
+		    objectMapper.writeValue(response.getWriter(), data);
+		}
+		
+		
 	}
 
 }
