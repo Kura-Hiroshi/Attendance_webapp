@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,7 +8,7 @@
 <title>勤怠入力画面</title>
 </head>
 <body>
-    <h2>出勤</h2>
+    <h2><c:out value="${eventType}"/></h2>
     <form action=""  autocomplete="off" method="post">
         <table>
             <tr>
@@ -27,7 +28,7 @@
                 </td>
             </tr>
         </table>
-        <input type="hidden" name="event_type" id="event_type" value="出勤">
+        <input type="hidden" name="event_type" id="event_type" value=<c:out value="${eventType}"/>>
         <input type="button" value="打刻する" onclick="send()">
     </form>
 
@@ -52,6 +53,7 @@
                 const data = await response.json();
                 if (data["success"]) {
                     alert("登録成功");
+                    window.location.href = 'SelectTypeServlet';
                 } else {
                     alert(data['msg']);                    
                 }

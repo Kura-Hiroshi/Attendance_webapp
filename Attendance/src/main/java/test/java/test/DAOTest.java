@@ -30,7 +30,7 @@ class DAOTest {
 
     @Test
     void testFindEmployeeById() throws SQLException {
-        ResultSet rs = EmployeeDAO.findEmployeeById(1, "xxxxcompany", con);
+        ResultSet rs = EmployeeDAO.findEmployeeById(1, "xxxxcompany","1234", con);
         assertNotNull(rs);
         assertTrue(rs.next());
         assertEquals(1, rs.getInt("ID"));
