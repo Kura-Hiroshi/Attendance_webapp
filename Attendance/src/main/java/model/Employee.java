@@ -58,6 +58,13 @@ public class Employee implements Serializable {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Employee [companyId=" + companyId + ", id=" + id + ", name=" + name + ", pass=" + pass + "]";
+	}
 	
 	
 	

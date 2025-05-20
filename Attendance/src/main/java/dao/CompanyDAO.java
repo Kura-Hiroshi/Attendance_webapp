@@ -5,32 +5,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import util.DBUtil;
+import model.Company;
 
 public class CompanyDAO {
-	public static ResultSet  findCompanyById(String companyId , String attendPass,Connection con) throws SQLException {
-		ResultSet rs = null;
-		try {
-			con = DBUtil.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("""
-					SELECT * FROM COMPANY WHERE id = ? AND clock_pass = ?;
-					""");
-			pstmt.setString(1, companyId);
-			pstmt.setString(2, attendPass);
-			rs =  pstmt.executeQuery();
-			
-			
-		}catch(IllegalStateException e){
-			throw new IllegalStateException(e.getMessage());
-		}catch (SQLException e) {
+    public static Company findCompanyById(String companyId, String attendPass, Connection con) throws SQLException {
+        String sql = "SELECT * FROM COMPANY WHERE id = ? AND clock_pass = ?";
+
+        try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, companyId);
+            pstmt.setString(2, attendPass);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Company(
+                        rs.getString("id"),
+                        rs.getString("company_name"),
+                        rs.getString("clock_pass"),
+                        rs.getString("admin_pass")
+                    );
+                }
+            }
+        }catch (SQLException e) {
 			throw new SQLException("ログインできませんでした。しばらくしてから再度お試しください。");
-		}finally {
-			try {
-				if(con != null) {con.close();}
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
-		}
-		return rs;
-	}
+        }
+
+        return null; // 一致しない場合
+    }
 }

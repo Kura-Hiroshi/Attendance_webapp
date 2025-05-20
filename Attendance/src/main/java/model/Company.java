@@ -56,6 +56,13 @@ public class Company implements Serializable{
 	public void setAdminPass(String adminPass) {
 		this.adminPass = adminPass;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", companyName=" + companyName + ", attendPass=" + attendPass + ", adminPass="
+				+ adminPass + "]";
+	}
 	
 	
 }

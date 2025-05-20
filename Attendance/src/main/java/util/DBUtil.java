@@ -14,11 +14,17 @@ public class DBUtil {
         try {
             Class.forName(DRIVER); // JDBCドライバのロード
         } catch (ClassNotFoundException e) {
+        	e.printStackTrace();
         	throw new IllegalStateException("ドライバのロードに失敗しました");
         }
     }
 
     public static Connection getConnection() throws SQLException {
+    	try {
         return DriverManager.getConnection(URL, USER, PASSWORD);
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    		throw new SQLException("データベースとの接続に失敗しました");
+    	}
     }
 }

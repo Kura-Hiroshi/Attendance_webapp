@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,7 @@ public class CompanyLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("companyLogin.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/companyLogin.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -40,16 +41,17 @@ public class CompanyLoginServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode json = mapper.readTree(request.getReader());
 		
-		request.setCharacterEncoding("UTF-(");
-		String compaanyd = json.has("company_id")?json.get("company_id").asText():null;
+		request.setCharacterEncoding("UTF-8");
+		String companyId = json.has("company_id")?json.get("company_id").asText():null;
 		String pass = json.has("pass")?json.get("pass").asText():null;
 		
 		Company company = null;
 		String msg = null;//クライアントに送信するメッセージ用変数
 		
+		
 		//データベースの事業所データと照合する
 		try {
-			company = CompanyLogic.attendanceLogin(compaanyd, pass);
+			company = CompanyLogic.attendanceLogin(companyId, pass);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -64,11 +66,13 @@ public class CompanyLoginServlet extends HttpServlet {
 		
 		if(company == null) {
 			//存在しなかった場合
+			msg = "事業所IDまたはパスワードが一致しません。";
 			data.put("success", false);
 			data.put("msg", msg);
 		}else {
 			//存在した場合
-			request.setAttribute("company", company);
+			HttpSession session = request.getSession();
+			session.setAttribute("company", company);
 			data.put("success", true);
 		}
 		mapper.writeValue(out, data); 
