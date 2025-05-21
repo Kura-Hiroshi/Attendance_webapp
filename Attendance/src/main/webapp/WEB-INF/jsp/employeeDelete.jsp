@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,7 +12,9 @@
     <form action="EmployeeDeleteServlet" method="post" id="deleteform">
         従業員名：<select name="employee_id" id="employee_id">
             <option value="">--削除対象者を選択してください--</option>
-                        <option value="1">1:山田　一郎</option>
+            <c:forEach var="employee" items="${employeeList}">
+                <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>                
+            </c:forEach>
         </select>
         <input type="button" value="削除" onclick="delemp()">
     </form>

@@ -8,26 +8,26 @@ CREATE TABLE COMPANY(
 );
 
 CREATE TABLE EMPLOYEE(
-    id INTEGER PRIMARY KEY,
-    company_id VARCHAR(50) PRIMARY KEY NOT NULL,
+    id INTEGER NOT NULL,
+    company_id VARCHAR(50) NOT NULL,
     employee_name VARCHAR(100) NOT NULL,
     pass VARCHAR(100) NOT NULL,
-    FOREIGN KEY(id) REFERENCES COMPANY(id)
+    FOREIGN KEY(company_id) REFERENCES COMPANY(id),
+    PRIMARY KEY(id,company_id)
 );
 
 CREATE TABLE ATTENDANCE(
-    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     company_id VARCHAR(50),
     employee_id INTEGER,
     clock_date DATE,
     event_type VARCHAR(20),
     event_time TIMESTAMP,
-    FOREIGN KEY(company_id) REFERENCES COMPANY(id)
-    FOREIGN KEY(employee_id) REFERENCES EMPLOYEE(id)
+    FOREIGN KEY (employee_id, company_id) REFERENCES EMPLOYEE(id, company_id)
 );
 
 CREATE TABLE EMPLOYEE_NUM(
     company_id VARCHAR(50) PRIMARY KEY,
     next_employee_id INTEGER,
     FOREIGN KEY(company_id) REFERENCES COMPANY(id)
-)
+);

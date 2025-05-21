@@ -39,7 +39,7 @@ public class EmployeeDAO {
 			ResultSet rs =  pstmt.executeQuery();
 			
 			while(rs.next()) {
-				employeeList.add(new Employee(rs.getInt("id"), rs.getString("companyu_id"), rs.getString("employee_name"),rs.getString("pass")));
+				employeeList.add(new Employee(rs.getInt("id"), rs.getString("company_id"), rs.getString("employee_name"),rs.getString("pass")));
 			}
 			
 			return employeeList;

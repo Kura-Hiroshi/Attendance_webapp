@@ -8,12 +8,11 @@ import java.sql.SQLException;
 import model.Company;
 
 public class CompanyDAO {
-    public static Company findCompanyById(String companyId, String attendPass, Connection con) throws SQLException {
-        String sql = "SELECT * FROM COMPANY WHERE id = ? AND clock_pass = ?";
+    public static Company findCompanyById(String companyId, Connection con) throws SQLException {
+        String sql = "SELECT * FROM COMPANY WHERE id = ?";
 
         try (PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, companyId);
-            pstmt.setString(2, attendPass);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {

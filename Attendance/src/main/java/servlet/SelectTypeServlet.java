@@ -36,8 +36,8 @@ public class SelectTypeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//セッションスコープからCompanyインスタンスを取得
-				HttpSession session = request.getSession();
-				Company company = (Company)session.getAttribute("company");
+		HttpSession session = request.getSession();
+		Company company = (Company)session.getAttribute("company");
 		
 		request.setCharacterEncoding("UTF-8");
 		String eventType = request.getParameter("action");

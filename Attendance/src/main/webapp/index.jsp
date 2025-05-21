@@ -8,7 +8,7 @@
 </head>
 <body>
 <button onclick="location.href='CompanyLoginServlet'">勤怠システム開始</button>
-<button>管理者入口</button>
+<button onclick="location.href='AdminLoginServlet'">管理者入口</button>
 <button>新規事業所登録</button>
 </body>
 </html>

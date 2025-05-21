@@ -18,7 +18,10 @@
                 <td>
                     <select name="employee_id" id="employee_id">
                         <option value="">--自分の名前を選択してください--</option>
-                        <option value="1">1:山田　一郎</option>
+                        <c:forEach var="employee" items="${employeeList}">
+                            <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>
+                            
+                        </c:forEach>
                     </select>
                 </td>
             </tr>

@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import jakarta.servlet.RequestDispatcher;
@@ -17,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Company;
+import model.Employee;
 import model.EmployeeLogic;
 
 /**
@@ -31,6 +34,20 @@ public class EmployeeDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Company company = (Company)session.getAttribute("company");
+		String msg = null;//クライアントに返すメッセージ用の変数
+		List<Employee> employeeList = new ArrayList<Employee>();
+		
+		//選択リストを作るためにデータベースから従業員データを取得する
+		try {
+			employeeList = EmployeeLogic.getAllemployee(company.getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg = e.getMessage();
+		}
+		
+		request.setAttribute("employeeList",employeeList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/employeeDelete.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -43,9 +60,7 @@ public class EmployeeDeleteServlet extends HttpServlet {
 		
 		//事業所インスタンスをセッションスコープから取得
 		HttpSession session = request.getSession();
-		Company company = new Company("xxxxcompany","xxxx株式会社","1234","1234");//開発中のもの
-		session.setAttribute("company", company);//開発中のもの
-		company = (Company)session.getAttribute("company");
+		Company company = (Company)session.getAttribute("company");
 		
 		//JSONデータを取得する
 		JsonNode jsonNode;
