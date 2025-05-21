@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>管理者画面</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+
 </head>
 <body>
     <h2>従業員の登録</h2>

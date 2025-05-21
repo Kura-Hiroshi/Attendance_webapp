@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>勤怠管理アプリ</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
 <button onclick="location.href='CompanyLoginServlet'">勤怠システム開始</button>

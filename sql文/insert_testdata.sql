@@ -11,7 +11,15 @@ INSERT INTO EMPLOYEE
 VALUES(1,'xxxxcompany','山田　一郎','1234');
 
 INSERT INTO ATTENDANCE(company_id, employee_id, clock_date, event_type, event_time)
-VALUES('xxxxcompany',1,current_date,'出勤',current_timestamp);
+VALUES('xxxxcompany',1,current_date,'出勤',current_timestamp),
+('xxxxcompany',1,current_date,'出勤',current_timestamp),
+('xxxxcompany',2,current_date,'出勤',current_timestamp),
+('xxxxcompany',3,current_date,'出勤',current_timestamp),
+('xxxxcompany',1,current_date,'退勤',current_timestamp),
+('xxxxcompany',1,current_date,'退勤',current_timestamp),
+('xxxxcompany',3,current_date,'退勤',current_timestamp);
+
+
 
 SELECT * FROM COMPANY;
 SELECT * FROM EMPLOYEE;

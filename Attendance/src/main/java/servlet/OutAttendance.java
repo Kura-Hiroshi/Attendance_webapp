@@ -1,9 +1,8 @@
 package servlet;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import jakarta.servlet.RequestDispatcher;
@@ -14,78 +13,69 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import model.AttendanceLogic;
+import model.AttendanceViewDTO;
 import model.Company;
-import model.Employee;
+import model.OutAttendanceLogic;
 
 /**
- * Servlet implementation class AttendanceServlet
+ * Servlet implementation class OutAttendanceOnExcelServlet
  */
-@WebServlet("/AttendanceServlet")
-public class AttendanceServlet extends HttpServlet {
+@WebServlet("/OutAttendance")
+public class OutAttendance extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final ObjectMapper objectMapper = new ObjectMapper();
+	private final ObjectMapper objectMapper = new ObjectMapper()
+			.registerModule(new JavaTimeModule())
+			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
        
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/attendance.jsp");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/outAttendance.jsp");
 		dispatcher.forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//セッションスコープからCompanyインスタンスを取得
 		HttpSession session = request.getSession();
 		Company company = (Company)session.getAttribute("company");
-		
 		String msg = null;//クライアントに返すメッセージ用の変数
+		List<AttendanceViewDTO> attendanceList = null;
 		
-		//フォームの入力値を取得する
-		JsonNode jsonNode;
-        try (BufferedReader reader = request.getReader()) {
-            jsonNode = objectMapper.readTree(reader);
-        }
-        System.out.println(company);
-        int employeeId = jsonNode.has("employee_id") ? Integer.valueOf(jsonNode.get("employee_id").asInt()) : 0;
-        String pass =jsonNode.has("pass") ? jsonNode.get("pass").asText() : null;
-		Employee employee = new Employee(employeeId, company.getId(),pass);
-		System.out.println(employee);
-		String eventType = jsonNode.has("event_type") ? jsonNode.get("event_type").asText():null; 
-        
-		//データベースへの登録処理
+		//勤怠記録をデータベースから取得する
 		try {
-			msg = AttendanceLogic.execute(employeeId,company.getId(),pass, eventType);
-		} catch (SQLException e) {
+			attendanceList = OutAttendanceLogic.createView(company.getId());
+		} catch (Exception e) {
 			e.printStackTrace();
-			msg = "登録に失敗しました";
+			msg = e.getMessage();
 		}
-        
 		
 		//登録処理の結果に応じて分岐する
         response.setContentType("application/json; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-		if(msg == null) {
+		if(attendanceList != null && msg == null) {
 
 		        // JSONとしてクライアントに返す
 			Map<String, Object> data = new HashMap<>();
 			data.put("success", true);
+			data.put("list", attendanceList);
 		    objectMapper.writeValue(response.getWriter(), data);
-		}else {
+		}else if(msg != null){
 			Map<String, Object> data = new HashMap<>();
 			data.put("success", false);
 			data.put("msg", msg);
 		    objectMapper.writeValue(response.getWriter(), data);
 		}
-		
-		
 	}
 
 }

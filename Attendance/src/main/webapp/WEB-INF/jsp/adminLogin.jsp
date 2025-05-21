@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>管理者ログイン画面</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+
 </head>
 <body>
     <form action="">
