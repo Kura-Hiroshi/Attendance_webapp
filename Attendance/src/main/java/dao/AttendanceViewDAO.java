@@ -10,17 +10,19 @@ import java.util.List;
 import model.AttendanceViewDTO;
 
 public class AttendanceViewDAO {
-	public static List<AttendanceViewDTO> findAllAttendanceViewByIds(String companyId,Connection con) throws SQLException {
+	public static List<AttendanceViewDTO> findAllAttendanceViewByIds(String companyId,String start,String end,Connection con) throws SQLException {
 		List<AttendanceViewDTO> list = new ArrayList<AttendanceViewDTO>();
 		
 		String sql = """
 				SELECT * FROM ATTENDANCE_VIEW
-				WHERE company_id = ?;
+				WHERE company_id = ? AND clock_date BETWEEN ? AND ?;
 				""";
 		
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
             pstmt.setString(1, companyId);
+            pstmt.setString(2, start);
+            pstmt.setString(3, end);
 
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {

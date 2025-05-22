@@ -101,6 +101,12 @@ public class AttendanceViewDTO {
 	public void setWorkout(Timestamp workout) {
 		this.workout = workout != null ? workout.toLocalDateTime():null;
 	}
+
+	@Override
+	public String toString() {
+		return "AttendanceViewDTO [companyId=" + companyId + ", employeeId=" + employeeId + ", employeeName="
+				+ employeeName + ", clockDate=" + clockDate + ", workin=" + workin + ", workout=" + workout + "]";
+	}
 	
 	
 }

@@ -21,7 +21,6 @@ public class CompanyLogic {
     public static Company adminLogin(String companyId , String adminPass) throws Exception {
     	try (Connection con = DBUtil.getConnection()) {
     		Company company =CompanyDAO.findCompanyById(companyId, con); 
-    		System.out.println(company.getAdminPass()+":"+adminPass);
             if(company.getAdminPass().equals(adminPass)) {
             	return company;
             }

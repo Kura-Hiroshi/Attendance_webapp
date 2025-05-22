@@ -78,7 +78,7 @@ public class AdminLoginServlet extends HttpServlet {
 		}else {
 			//存在した場合
 			HttpSession session = request.getSession();
-			session.setAttribute("company", company);
+			session.setAttribute("admin", company);
 			data.put("success", true);
 		}
 		mapper.writeValue(out, data); 

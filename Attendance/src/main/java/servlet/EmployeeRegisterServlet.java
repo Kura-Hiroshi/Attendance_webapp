@@ -46,9 +46,7 @@ public class EmployeeRegisterServlet extends HttpServlet {
 		
 		//事業所オブジェクトをセッションスコープから取得
 		HttpSession session = request.getSession();
-		Company company = new Company("xxxxcompany","xxxx株式会社","1234","1234");//開発中のもの
-		session.setAttribute("company", company);//開発中のもの
-		company = (Company)session.getAttribute("company");
+		Company company = (Company)session.getAttribute("admin");
 		
 		
 		//クライアントからJSONを受け取る

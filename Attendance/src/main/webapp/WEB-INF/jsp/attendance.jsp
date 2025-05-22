@@ -5,16 +5,16 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>勤怠入力画面</title>
+<title>勤怠入力システム</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-    <h2><c:out value="${eventType}"/></h2>
-    <form action=""  autocomplete="off" method="post">
+    <h1 class="text-center">勤怠入力システム</h1>
+    <h2 class="text-center"><c:out value="${eventType}"/></h2>
+    <form class="block-center large-block" action=""  autocomplete="off">
         <table>
             <tr>
-                <td>
-                    従業員名
-                </td>
+                <td>従業員名</td>
                 <td>
                     <select name="employee_id" id="employee_id">
                         <option value="">--自分の名前を選択してください--</option>
@@ -26,13 +26,12 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    パスワード<input type="password" name="pass" id="pass" required>
-                </td>
+                <td>パスワード</td>
+                <td><input type="password" name="pass" id="pass" required></td>
             </tr>
         </table>
         <input type="hidden" name="event_type" id="event_type" value=<c:out value="${eventType}"/>>
-        <input type="button" value="打刻する" onclick="send()">
+        <input class="genbtn sbtn adjust-right" type="button" value="打刻する" onclick="send()">
     </form>
 
     <script>

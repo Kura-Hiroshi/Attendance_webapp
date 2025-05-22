@@ -1,26 +1,70 @@
 --テスト用のデータを作成
 
-INSERT INTO COMPANY
-VALUES('xxxxcompany','xxxx株式会社','1234','1234');
-
-INSERT INTO EMPLOYEE_NUM
-VALUES('xxxxcompany',2);
-
-
-INSERT INTO EMPLOYEE
-VALUES(1,'xxxxcompany','山田　一郎','1234');
-
-INSERT INTO ATTENDANCE(company_id, employee_id, clock_date, event_type, event_time)
-VALUES('xxxxcompany',1,current_date,'出勤',current_timestamp),
-('xxxxcompany',1,current_date,'出勤',current_timestamp),
-('xxxxcompany',2,current_date,'出勤',current_timestamp),
-('xxxxcompany',3,current_date,'出勤',current_timestamp),
-('xxxxcompany',1,current_date,'退勤',current_timestamp),
-('xxxxcompany',1,current_date,'退勤',current_timestamp),
-('xxxxcompany',3,current_date,'退勤',current_timestamp);
+--初期化するために削除　※ATTENDANCEテーブルの自動採番は初期化されない
+DELETE FROM EMPLOYEE_NUM;
+DELETE FROM ATTENDANCE;
+DELETE FROM EMPLOYEE;
+DELETE FROM COMPANY;
 
 
+-- COMPANYテーブルのデータ
+INSERT INTO COMPANY (id, company_name, clock_pass, admin_pass) VALUES 
+('C001', '株式会社テストA', '1234', '1234'),
+('C002', '株式会社テストB', '1234', '1234');
 
+-- EMPLOYEEテーブルのデータ
+INSERT INTO EMPLOYEE (id, company_id, employee_name, pass) VALUES 
+(1, 'C001', '山田太郎', '1234'),
+(2, 'C001', '田中花子', '1234'),
+(3, 'C001', '佐藤次郎', '1234'),
+(4, 'C002', '高橋由美', '1234'),
+(5, 'C002', '鈴木一郎', '1234');
+
+-- EMPLOYEE_NUMテーブルのデータ
+INSERT INTO EMPLOYEE_NUM (company_id, next_employee_id) VALUES 
+('C001', 4),
+('C002', 6);
+
+-- ATTENDANCEテーブルのデータ（20件）
+INSERT INTO ATTENDANCE (company_id, employee_id, clock_date, event_type, event_time) VALUES 
+('C001', 1, DATE '2025-05-20', '出勤', TIMESTAMP '2025-05-20 09:00:00'),
+('C001', 1, DATE '2025-05-20', '退勤', TIMESTAMP '2025-05-20 18:00:00'),
+('C001', 1, DATE '2025-05-21', '出勤', TIMESTAMP '2025-05-21 09:05:00'),
+('C001', 1, DATE '2025-05-21', '退勤', TIMESTAMP '2025-05-21 17:55:00'),
+
+('C001', 2, DATE '2025-05-20', '出勤', TIMESTAMP '2025-05-20 09:10:00'),
+('C001', 2, DATE '2025-05-20', '退勤', TIMESTAMP '2025-05-20 18:10:00'),
+('C001', 2, DATE '2025-05-21', '出勤', TIMESTAMP '2025-05-21 09:00:00'),
+('C001', 2, DATE '2025-05-21', '退勤', TIMESTAMP '2025-05-21 18:00:00'),
+
+('C001', 3, DATE '2025-05-20', '出勤', TIMESTAMP '2025-05-20 08:50:00'),
+('C001', 3, DATE '2025-05-20', '退勤', TIMESTAMP '2025-05-20 17:45:00'),
+('C001', 3, DATE '2025-05-21', '出勤', TIMESTAMP '2025-05-21 08:55:00'),
+('C001', 3, DATE '2025-05-21', '退勤', TIMESTAMP '2025-05-21 17:50:00'),
+
+('C002', 4, DATE '2025-05-20', '出勤', TIMESTAMP '2025-05-20 09:00:00'),
+('C002', 4, DATE '2025-05-20', '退勤', TIMESTAMP '2025-05-20 18:00:00'),
+('C002', 4, DATE '2025-05-21', '出勤', TIMESTAMP '2025-05-21 09:00:00'),
+('C002', 4, DATE '2025-05-21', '退勤', TIMESTAMP '2025-05-21 18:00:00'),
+
+('C002', 5, DATE '2025-05-20', '出勤', TIMESTAMP '2025-05-20 08:45:00'),
+('C002', 5, DATE '2025-05-20', '退勤', TIMESTAMP '2025-05-20 17:45:00'),
+('C002', 5, DATE '2025-05-21', '出勤', TIMESTAMP '2025-05-21 08:50:00'),
+('C002', 5, DATE '2025-05-21', '退勤', TIMESTAMP '2025-05-21 17:50:00'),
+
+('C001', 1, DATE '2025-04-15', '出勤', TIMESTAMP '2025-04-15 09:00:00'),
+('C001', 1, DATE '2025-04-15', '退勤', TIMESTAMP '2025-04-15 18:00:00'),
+('C001', 2, DATE '2025-04-15', '出勤', TIMESTAMP '2025-04-15 09:10:00'),
+('C001', 2, DATE '2025-04-15', '退勤', TIMESTAMP '2025-04-15 18:05:00'),
+('C001', 3, DATE '2025-04-15', '出勤', TIMESTAMP '2025-04-15 08:55:00'),
+('C001', 3, DATE '2025-04-15', '退勤', TIMESTAMP '2025-04-15 17:50:00'),
+
+('C002', 4, DATE '2025-04-15', '出勤', TIMESTAMP '2025-04-15 09:05:00'),
+('C002', 4, DATE '2025-04-15', '退勤', TIMESTAMP '2025-04-15 18:10:00'),
+('C002', 5, DATE '2025-04-15', '出勤', TIMESTAMP '2025-04-15 08:50:00'),
+('C002', 5, DATE '2025-04-15', '退勤', TIMESTAMP '2025-04-15 17:55:00');
+
+--確認のため出力
 SELECT * FROM COMPANY;
 SELECT * FROM EMPLOYEE;
 SELECT * FROM ATTENDANCE;

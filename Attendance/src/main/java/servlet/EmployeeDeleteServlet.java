@@ -35,7 +35,7 @@ public class EmployeeDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Company company = (Company)session.getAttribute("company");
+		Company company = (Company)session.getAttribute("admin");
 		String msg = null;//クライアントに返すメッセージ用の変数
 		List<Employee> employeeList = new ArrayList<Employee>();
 		
@@ -60,7 +60,7 @@ public class EmployeeDeleteServlet extends HttpServlet {
 		
 		//事業所インスタンスをセッションスコープから取得
 		HttpSession session = request.getSession();
-		Company company = (Company)session.getAttribute("company");
+		Company company = (Company)session.getAttribute("admin");
 		
 		//JSONデータを取得する
 		JsonNode jsonNode;

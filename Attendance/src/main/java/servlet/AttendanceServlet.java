@@ -53,11 +53,10 @@ public class AttendanceServlet extends HttpServlet {
         try (BufferedReader reader = request.getReader()) {
             jsonNode = objectMapper.readTree(reader);
         }
-        System.out.println(company);
+
         int employeeId = jsonNode.has("employee_id") ? Integer.valueOf(jsonNode.get("employee_id").asInt()) : 0;
         String pass =jsonNode.has("pass") ? jsonNode.get("pass").asText() : null;
 		Employee employee = new Employee(employeeId, company.getId(),pass);
-		System.out.println(employee);
 		String eventType = jsonNode.has("event_type") ? jsonNode.get("event_type").asText():null; 
         
 		//データベースへの登録処理

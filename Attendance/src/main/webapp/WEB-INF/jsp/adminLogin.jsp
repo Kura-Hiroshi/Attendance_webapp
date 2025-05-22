@@ -9,18 +9,20 @@
 
 </head>
 <body>
-    <form action="">
+    <h1 class="text-center">勤怠管理者用システム</h1>
+    <h2 class="text-center">管理者用ログイン画面</h2>
+    <form class="block-center large-block">
         <table>
             <tr>
-                <td>事業所ID</td>
-                <td><input type="text" name="company_id" id="company_id"></td>
+                <td class="text-justify">事業所ID</td>
+                <td><input  type="text" name="company_id" id="company_id"></td>
             </tr>
             <tr>
-                <td>パスワード（管理者用）</td>
+                <td class="text-justify">パスワード（管理者用）</td>
                 <td><input type="password" name="pass" id="pass"></td>
             </tr>
         </table>
-        <input type="button" value="ログイン" onclick="login()">
+        <input class="genbtn sbtn adjust-right" type="button" value="ログイン" onclick="login()">
     </form>
     <script>
         async function login() {

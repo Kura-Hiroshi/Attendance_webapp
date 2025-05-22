@@ -2,71 +2,62 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #fff7f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
-form {
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    max-width: 400px;
+.genbtn{
+    display: block;
+    border-radius: 6px;
+    box-shadow: 5px 5px 5px rgb(90, 90, 90);
+    width: 200px;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.genbtn:hover{
+
+}
+
+.text-center{
+    text-align: center;
+}
+
+.flex{
+    display: flex;
+}
+
+.block-center{
+    margin: 0 auto 0;
+    background-color: aqua;
+}
+
+.large-block{
+    width: fit-content;
+    padding: 20px;
+    /* background-color: #fff7f0; */
+}
+
+.innerblk{
     margin: 40px auto;
 }
 
-h2 {
-    text-align: center;
-    color: #fa9638;
-    margin-top: 30px;
+.container{
+
 }
 
-table {
-    width: 100%;
-    margin-bottom: 20px;
+.text-justify{
+    text-align: justify;
 }
 
-td {
-    padding: 10px;
-    font-size: 14px;
+.sbtn{
+    width: 100px;
+    height: 30px;
+    font-size: 0.8rem;
 }
 
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.adjust-right{
+    margin:0 10px 0 auto;
 }
 
-input[type="button"], input[type="submit"] {
-    background-color: #fa9638;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    transition: background-color 0.3s;
-}
-
-input[type="button"]:hover, input[type="submit"]:hover {
-    background-color: #e27d21;
-}
-
-button{
-    background-color:#e27d21;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    transition: background-color 0.3s;
-}
+/* ページ個別のスタイル
+    ページごとに接頭辞をつけて区別する*/

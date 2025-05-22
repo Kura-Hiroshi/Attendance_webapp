@@ -21,7 +21,7 @@ CREATE TABLE ATTENDANCE(
     company_id VARCHAR(50),
     employee_id INTEGER,
     clock_date DATE,
-    event_type VARCHAR(20),
+    event_type VARCHAR(20),--"出勤"または"退勤"
     event_time TIMESTAMP,
     FOREIGN KEY (employee_id, company_id) REFERENCES EMPLOYEE(id, company_id)
 );
