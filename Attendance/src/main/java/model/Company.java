@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Company implements Serializable{
 	private String id;
@@ -62,6 +63,26 @@ public class Company implements Serializable{
 	public String toString() {
 		return "Company [id=" + id + ", companyName=" + companyName + ", attendPass=" + attendPass + ", adminPass="
 				+ adminPass + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(adminPass, attendPass, companyName, id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Company other = (Company) obj;
+		return Objects.equals(adminPass, other.adminPass) && Objects.equals(attendPass, other.attendPass)
+				&& Objects.equals(companyName, other.companyName) && Objects.equals(id, other.id);
 	}
 	
 	

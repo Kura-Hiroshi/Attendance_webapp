@@ -35,7 +35,7 @@
         async function output(exportExcel) {
             const start = document.querySelector('#start')
             const end = document.querySelector('#end')
-            const response = await fetch("http://localhost:8080/Attendance/OutAttendance", {
+            const response = await fetch("OutAttendance", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

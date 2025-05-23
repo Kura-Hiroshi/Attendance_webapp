@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 
 </head>
+<header>
+        <button onclick="window.location.href='SelectMethodServlet'">戻る</button>
+    </header>
 <body>
     <h2>従業員の登録</h2>
     <form id="register_form">
@@ -30,7 +33,7 @@
             const name = document.querySelector('#name');
             const pass = document.querySelector('#pass');
             const form = document.querySelector('#register_form');
-            const response = await fetch("http://localhost:8080/Attendance/EmployeeRegisterServlet", {
+            const response = await fetch("EmployeeRegisterServlet", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

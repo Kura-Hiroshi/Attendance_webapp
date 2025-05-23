@@ -1,11 +1,11 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import dao.AttendanceDAO;
 import dao.EmployeeDAO;
+import util.DBUtil;
 
 public class AttendanceLogic {
 	public static String execute(int employeeId,String companyId,String pass, String eventType) throws SQLException {
@@ -20,7 +20,7 @@ public class AttendanceLogic {
 		Connection con = null;
 		try {
 			
-			con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/Desktop/勤怠管理アプリ/Attendance_webapp/Attendance/DB/AttendanceDB", "sa", "");
+			con = DBUtil.getConnection();
 
 			Employee employee = EmployeeDAO.findEmployeeById(employeeId, companyId,pass, con);
 			

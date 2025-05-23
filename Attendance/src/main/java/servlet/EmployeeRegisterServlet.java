@@ -62,8 +62,12 @@ public class EmployeeRegisterServlet extends HttpServlet {
 		try {
 			employee =  EmployeeLogic.registerEmployee(company, name, pass);
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			msg = e.getMessage();
+		}
+		
+		//バリデーションチェック
+		if (model.Validator.isValidEmployeeName(name)) {
+			msg = "登録できる従業員名は1文字以上50文字以下";
 		}
 		
 		response.setContentType("application/json; charset=UTF-8");

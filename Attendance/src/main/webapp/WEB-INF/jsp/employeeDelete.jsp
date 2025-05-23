@@ -23,7 +23,7 @@
         async function delemp(){
             const employee_id = document.querySelector('#employee_id')
             const form = document.querySelector('#deleteform')
-            const response = await fetch("http://localhost:8080/Attendance/EmployeeDeleteServlet", {
+            const response = await fetch("EmployeeDeleteServlet", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

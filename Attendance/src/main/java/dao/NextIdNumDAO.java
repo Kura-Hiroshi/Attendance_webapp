@@ -35,8 +35,22 @@ public class NextIdNumDAO {
 			pstmt.setString(1, companyId);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+			throw new SQLException();
+		}
+	}
+	
+	public static void insert(String companyId ,Connection con) throws SQLException {
+		try {
+			PreparedStatement pstmt = con.prepareStatement("""
+					INSERT INTO EMPLOYEE_NUM
+					VALUES(?,1);
+					""");
+			pstmt.setString(1, companyId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException();
 		}
 	}
 }

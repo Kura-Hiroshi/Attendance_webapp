@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Company;
 import model.CompanyLogic;
+import model.PasswordHasher;
 
 /**
  * Servlet implementation class AttendanceLoginServlet
@@ -49,9 +50,12 @@ public class CompanyLoginServlet extends HttpServlet {
 		String msg = null;//クライアントに送信するメッセージ用変数
 		
 		
-		//データベースの事業所データと照合する
 		try {
-			company = CompanyLogic.attendanceLogin(companyId, pass);
+			//パスワードをハッシュ化する
+			String hashPass = PasswordHasher.hashPassword(pass); 
+			
+			//データベースの事業所データと照合する
+			company = CompanyLogic.attendanceLogin(companyId, hashPass);
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

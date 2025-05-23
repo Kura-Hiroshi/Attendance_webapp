@@ -13,7 +13,7 @@
 <div class="block-center large-block" >
     <button class="genbtn innerblk" onclick="location.href='CompanyLoginServlet'">勤怠システム開始</button>
     <button class="genbtn innerblk" onclick="location.href='AdminLoginServlet'">管理者入口</button>
-    <button class="genbtn innerblk" onclick="location.href=''">新規事業所登録</button>
+    <button class="genbtn innerblk" onclick="location.href='AccountCreate'">新規事業所登録</button>
 </div>
 </body>
 </html>

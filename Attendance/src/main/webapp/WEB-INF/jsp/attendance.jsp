@@ -9,6 +9,9 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+    <header>
+        <button onclick="window.location.href='SelectTypeServlet'">戻る</button>
+    </header>
     <h1 class="text-center">勤怠入力システム</h1>
     <h2 class="text-center"><c:out value="${eventType}"/></h2>
     <form class="block-center large-block" action=""  autocomplete="off">
@@ -39,7 +42,7 @@
             const employee_id = document.querySelector('#employee_id')
             const pass = document.querySelector('#pass')
             const event_type = document.querySelector('#event_type')
-            const response = await fetch("http://localhost:8080/Attendance/AttendanceServlet", {
+            const response = await fetch("AttendanceServlet", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

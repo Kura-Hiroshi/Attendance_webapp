@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
+    <header>
+        <button onclick="window.location.href='CompanyLoginServlet'">戻る</button>
+    </header>
     <h1 class="text-center">勤怠入力システム</h1>
     <p class="text-center">記録したいものを選んでください</p>
     <form class="flex block-center large-block" action="SelectTypeServlet" method="post">    

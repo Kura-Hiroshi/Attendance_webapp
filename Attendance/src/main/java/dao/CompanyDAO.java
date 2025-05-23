@@ -30,4 +30,22 @@ public class CompanyDAO {
 
         return null; // 一致しない場合
     }
+    
+    public static void insert(String companyId,String companyName,String passForAttend,String passForAdmin,Connection con) throws SQLException {
+    	try {
+			PreparedStatement pstmt = con.prepareStatement("""
+					INSERT INTO COMPANY
+					VALUES(?,?,?,?);
+					""");
+			pstmt.setString(1, companyId);
+			pstmt.setString(2, companyName);
+			pstmt.setString(3, passForAttend);
+			pstmt.setString(4, passForAdmin);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException();
+		}
+    }
 }

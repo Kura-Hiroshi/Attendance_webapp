@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Company;
 import model.CompanyLogic;
+import model.PasswordHasher;
 
 /**
  * Servlet implementation class AdminLoginServlet
@@ -25,7 +26,7 @@ import model.CompanyLogic;
 @WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private  ObjectMapper mapper = new ObjectMapper();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +43,7 @@ public class AdminLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
+		
 		JsonNode json = mapper.readTree(request.getReader());
 		
 		request.setCharacterEncoding("UTF-8");
@@ -52,11 +53,13 @@ public class AdminLoginServlet extends HttpServlet {
 		Company company = null;
 		String msg = null;//クライアントに送信するメッセージ用変数
 		
-		//データベースの事業所データと照合する
 		try {
-			company = CompanyLogic.adminLogin(companyId, pass);
+			//パスワードをハッシュ化する
+			String hashPass = PasswordHasher.hashPassword(pass); 
+			
+			//データベースの事業所データと照合する
+			company = CompanyLogic.adminLogin(companyId, hashPass);
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			msg = e.getMessage();
 		}
