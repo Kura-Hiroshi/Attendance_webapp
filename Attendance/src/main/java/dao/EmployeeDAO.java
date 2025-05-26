@@ -18,7 +18,7 @@ public class EmployeeDAO {
 			pstmt.setString(3, pass);
 			ResultSet rs =  pstmt.executeQuery();
 			if(rs.next()) {
-				return new Employee(rs.getInt("id"), rs.getString("companyu_id"), rs.getString("employee_name"),rs.getString("pass"));
+				return new Employee(rs.getInt("id"), rs.getString("company_id"), rs.getString("employee_name"),rs.getString("pass"));
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

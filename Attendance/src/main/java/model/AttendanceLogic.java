@@ -8,8 +8,7 @@ import dao.EmployeeDAO;
 import util.DBUtil;
 
 public class AttendanceLogic {
-	public static String execute(int employeeId,String companyId,String pass, String eventType) throws SQLException {
-		String msg = null;
+	public static AttendanceDTO execute(int employeeId,String companyId,String pass, String eventType) throws SQLException {
 		try {
 			Class.forName("org.h2.Driver");
 			
@@ -21,17 +20,17 @@ public class AttendanceLogic {
 		try {
 			
 			con = DBUtil.getConnection();
-
+			
+			//勤怠記録テーブルに挿入する。
+			
 			Employee employee = EmployeeDAO.findEmployeeById(employeeId, companyId,pass, con);
 			
-			if(employee != null) {
-				AttendanceDAO.insert(employee.getCompanyId(), employee.getId(), eventType, con);				
-			}else {
-				msg = "従業員名もしくはパスワードが違います。";
-				}
+			int r = AttendanceDAO.insert(employee.getCompanyId(), employee.getId(), eventType, con);				
+			
+			return AttendanceDAO.findbyId(r, con);
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SQLException(e.getMessage());
 			
 		}finally {
 			if(con != null) {
@@ -42,6 +41,5 @@ public class AttendanceLogic {
 				}
 			}
 		}
-		return msg;
 	}
 }

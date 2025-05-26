@@ -77,6 +77,8 @@ public class CompanyLoginServlet extends HttpServlet {
 			//存在した場合
 			HttpSession session = request.getSession();
 			session.setAttribute("company", company);
+			session.setMaxInactiveInterval(172800);//セッション時間を48時間とった。
+
 			data.put("success", true);
 		}
 		mapper.writeValue(out, data); 

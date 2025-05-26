@@ -6,29 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <title>管理者画面</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-<h2>勤怠記録の出力</h2>
-<p>出力する期間を入力してください</p>
-<form >
-    <input type="date" name="start" id="start">
-    <input type="date" name="end" id="end">
-    <input type="button" value="表を出力する" onclick="output(false)">
-    <input type="button" value="Excelファイルで出力する" onclick="output(true)">
-</form>
-
-<table id="resultTable" style="display: none;">
-    <thead>
-    <tr>
-        <th>社員ID</th>
-        <th>社員名</th>
-        <th>日付</th>
-        <th>出勤</th>
-        <th>退勤</th>
-    </tr>
-</thead>
-<tbody></tbody>
-</table>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='SelectMethodServlet'">戻る</button>
+    </header>
+<h2 class="text-center mb-2">勤怠記録の出力</h2>
+<p class="text-center mb-2">出力する期間を入力してください</p>
+<div class="form-container-c">
+    <form class="form">
+        <div class="mb-2">
+            <input type="date" name="start" id="start">
+            <input type="date" name="end" id="end">
+            <input type="button" value="表を出力する" onclick="output(false)">
+            <input type="button" value="Excelファイルで出力する" onclick="output(true)">
+        </div>
+        <table class="t-smp" id="resultTable" style="display: none;">
+            <thead>
+            <tr>
+                <th class="th-smp">社員ID</th>
+                <th class="th-smp">社員名</th>
+                <th class="th-smp">日付</th>
+                <th class="th-smp">出勤</th>
+                <th class="th-smp">退勤</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        </table>
+    </form>
+</div>
 
 
     <script>
@@ -61,11 +68,11 @@
                         data.list.forEach(item => {
                             const tr = document.createElement("tr");
                             tr.innerHTML =
-                                "<td>" + item.employeeId + "</td>" +
-                                "<td>" + item.employeeName + "</td>" +
-                                "<td>" + item.clockDate + "</td>" +
-                                "<td>" + (item.workin != null ? item.workin : '') + "</td>" +
-                                "<td>" + (item.workout != null ? item.workout : '') + "</td>";
+                                "<td class='td-smp'>" + item.employeeId + "</td>" +
+                                "<td class='td-smp'>" + item.employeeName + "</td>" +
+                                "<td class='td-smp'>" + item.clockDate + "</td>" +
+                                "<td class='td-smp'>" + (item.workin != null ? item.workin : '') + "</td>" +
+                                "<td class='td-smp'>" + (item.workout != null ? item.workout : '') + "</td>";
                             tbody.appendChild(tr);
                         });
                         table.style.display = "table";

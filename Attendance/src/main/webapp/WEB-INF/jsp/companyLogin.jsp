@@ -9,29 +9,36 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-    <h1 class="text-center">勤怠入力システム</h1>
-    <h2 class="text-center">勤怠入力システムログイン画面</h2>
     <c:choose>
         <c:when test="${company ==null}">
             <!-- 勤怠システムにログインしていない場合 -->
-            <form class="block-center large-block" action="CompanyLoginServlet" method="post">
-                <table>
-                    <tr>
-                        <td class="text-justify">事業所ID</td>
-                        <td><input type="text" name="company_id" id="company_id"></td>
-                    </tr>
-                    <tr>
-                        <td class="text-justify">パスワード</td>
-                        <td><input type="password" name="pass" id="pass"></td>
-                    </tr>
-                </table>
-                <input class="genbtn sbtn" type="button" value="ログイン" onclick="login()">
-            </form>
+            <header class="mt-2 mb-4">
+                <button class="ma-2 btn btn-s" onclick="window.location.href='index.jsp'">戻る</button>
+            </header>
+            <h1 class="text-center mt-4 mb-4">勤怠入力システム</h1>
+            <h3 class="text-center mb-4">勤怠入力システムログイン画面</h3>
+            <div class="form-container-c">
+                <form class="form" action="CompanyLoginServlet" method="post">
+                    <table class="form_table">
+                        <tr>
+                            <td class="form_cell-label">事業所ID</td>
+                            <td><input class="input" type="text" name="company_id" id="company_id"></td>
+                        </tr>
+                        <tr>
+                            <td class="form_cell-label">パスワード</td>
+                            <td><input class="input" type="password" name="pass" id="pass"></td>
+                        </tr>
+                    </table>
+                    <div class="text-right"><input class="btn btn-m" type="button" value="ログイン" onclick="login()"></div>
+                </form>
+            </div>
         </c:when>
         <c:otherwise>
             <!-- 勤怠システムにログイン済みの場合 -->
-            <button onclick="window.location.href='SelectTypeServlet'">勤怠システムへ</button>
-            <button onclick="window.location.href='Logout?act=attend'">ログアウト</button>
+            <div class="form-container-r">
+                <button class="btn btn-xl mx-4" onclick="window.location.href='SelectTypeServlet'">勤怠システムへ</button>
+                <button class="btn btn-xl mx-4" onclick="window.location.href='Logout?act=attend'">ログアウト</button>
+            </div>
         </c:otherwise>
     </c:choose>
 

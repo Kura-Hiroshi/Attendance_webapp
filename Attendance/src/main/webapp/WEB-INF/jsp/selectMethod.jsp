@@ -8,11 +8,13 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-    <header>
-        <button onclick="window.location.href='AdminLoginServlet'">戻る</button>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='AdminLoginServlet'">戻る</button>
     </header>
-    <button onclick="location.href='EmployeeAdminServlet'">従業員の登録・削除</button>
-    <button onclick="location.href='OutEmployeeListServlet'">従業員名簿の確認</button>
-    <button onclick="location.href='OutAttendance'">勤怠記録の出力</button>
+    <div class="form-container-r">
+        <button class="btn btn-xl mx-4" onclick="location.href='EmployeeAdminServlet'">従業員の登録・削除</button>
+        <button class="btn btn-xl mx-4" onclick="location.href='OutEmployeeListServlet'">従業員名簿の確認</button>
+        <button class="btn btn-xl mx-4" onclick="location.href='OutAttendance'">勤怠記録の出力</button>
+    </div>
 </body>
 </html>

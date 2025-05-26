@@ -66,7 +66,7 @@ public class EmployeeRegisterServlet extends HttpServlet {
 		}
 		
 		//バリデーションチェック
-		if (model.Validator.isValidEmployeeName(name)) {
+		if (!model.Validator.isValidEmployeeName(name)) {
 			msg = "登録できる従業員名は1文字以上50文字以下";
 		}
 		

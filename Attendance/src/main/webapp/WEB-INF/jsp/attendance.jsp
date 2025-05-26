@@ -9,33 +9,35 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-    <header>
-        <button onclick="window.location.href='SelectTypeServlet'">戻る</button>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='SelectTypeServlet'">戻る</button>
     </header>
-    <h1 class="text-center">勤怠入力システム</h1>
-    <h2 class="text-center"><c:out value="${eventType}"/></h2>
-    <form class="block-center large-block" action=""  autocomplete="off">
-        <table>
-            <tr>
-                <td>従業員名</td>
-                <td>
-                    <select name="employee_id" id="employee_id">
-                        <option value="">--自分の名前を選択してください--</option>
-                        <c:forEach var="employee" items="${employeeList}">
-                            <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>
-                            
-                        </c:forEach>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>パスワード</td>
-                <td><input type="password" name="pass" id="pass" required></td>
-            </tr>
-        </table>
-        <input type="hidden" name="event_type" id="event_type" value=<c:out value="${eventType}"/>>
-        <input class="genbtn sbtn adjust-right" type="button" value="打刻する" onclick="send()">
-    </form>
+    <h1 class="mb-2 text-center">勤怠入力システム</h1>
+    <h2 class="mb-2 text-center"><c:out value="${eventType}"/></h2>
+    <div class="form-container-c">
+        <form class="form" action=""  autocomplete="off">
+            <table class="form_table">
+                <tr>
+                    <td class="form_cell-label">従業員名</td>
+                    <td>
+                        <select class="input" name="employee_id" id="employee_id">
+                            <option value="">--自分の名前を選択してください--</option>
+                            <c:forEach var="employee" items="${employeeList}">
+                                <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>
+        
+                            </c:forEach>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form_cell-label">パスワード</td>
+                    <td><input class="input" type="password" name="pass" id="pass" required></td>
+                </tr>
+            </table>
+            <input type="hidden" name="event_type" id="event_type" value=<c:out value="${eventType}"/>>
+            <div class="text-right"><input class="btn btn-m" type="button" value="打刻する" onclick="send()"></div>
+        </form>
+    </div>
 
     <script>
         async function send() {
@@ -57,7 +59,7 @@
             if (response.ok) {
                 const data = await response.json();
                 if (data["success"]) {
-                    alert("登録成功");
+                    alert(data["eventTime"]);
                     window.location.href = 'SelectTypeServlet';
                 } else {
                     alert(data['msg']);                    

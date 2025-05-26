@@ -68,10 +68,10 @@ public class AccountCreate extends HttpServlet {
 				//パスワードのハッシュ化
 				String hashPassForAttend = PasswordHasher.hashPassword(passForAttend);
 				String hashPassForAdmin = PasswordHasher.hashPassword(passForAdmin);
+
 				
 				//データベースへの登録を行う。
 				company = CompanyLogic.accountCreate(companyId, companyName, hashPassForAttend, hashPassForAdmin);
-				
 			} catch (Exception e) {
 				msg = e.getMessage();
 			}

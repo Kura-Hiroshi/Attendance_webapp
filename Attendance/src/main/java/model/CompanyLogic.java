@@ -42,7 +42,7 @@ public class CompanyLogic {
             		NextIdNumDAO.insert(companyId, con);
             		con.commit();
             		
-            		company = new Company(companyId, companyName, passForAttend, passForAdmin); 
+            		company = new Company(companyId, companyName, passForAttend, passForAdmin);
             		return company;
 				} catch (Exception e) {
 					con.rollback();

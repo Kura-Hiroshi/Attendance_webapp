@@ -50,7 +50,7 @@ public class OutAttendance extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Company company = (Company)session.getAttribute("company");
+		Company company = (Company)session.getAttribute("admin");
 		String msg = null;//クライアントに返すメッセージ用の変数
 		List<AttendanceViewDTO> attendanceList = null;
 		
@@ -76,8 +76,7 @@ public class OutAttendance extends HttpServlet {
 			response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		    response.setHeader("Content-Disposition", "attachment; filename=\"attendance.xlsx\"");
 			try {
-				CreateExcelFile.create(attendanceList,response.getOutputStream());				
-				System.out.println("create後");
+				CreateExcelFile.create(attendanceList,response.getOutputStream());
 				return;
 			}catch(Exception e) {
 				msg = e.getMessage();

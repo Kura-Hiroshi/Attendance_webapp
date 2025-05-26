@@ -4,34 +4,37 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>アカウント作成</title>
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-    <header>
-        <button onclick="window.location.href='index.jsp'">戻る</button>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='index.jsp'">戻る</button>
     </header>
-    <h1>事業所アカウント作成</h1>
-    <form>
-        <table>
-            <tr>
-                <td>事業所ID</td>
-                <td><input type="text" name="company_id" id="company_id"></td>
-            </tr>
-            <tr>
-                <td>事業所名</td>
-                <td><input type="text" name="company_name" id="company_name"></td>
-            </tr>
-            <tr>
-                <td>パスワード（勤怠システム用）</td>
-                <td><input type="password" name="pass_for_attend" id="pass_for_attend"></td>
-            </tr>
-            <tr>
-                <td>パスワード（管理者用）</td>
-                <td><input type="password" name="pass_for_admin" id="pass_for_admin"></td>
-            </tr>
-        </table>
-        <input type="button" onclick="create()" value="アカウント作成">
-    </form>
+    <h1 class="text-center mb-2">事業所アカウント作成</h1>
+    <div class="form-container-c">
+        <form class="form">
+            <table class="form_table">
+                <tr>
+                    <td class="form_cell-label">事業所ID</td>
+                    <td><input class="input" type="text" name="company_id" id="company_id"></td>
+                </tr>
+                <tr>
+                    <td class="form_cell-label">事業所名</td>
+                    <td><input class="input" type="text" name="company_name" id="company_name"></td>
+                </tr>
+                <tr>
+                    <td class="form_cell-label">パスワード<br>（勤怠システム用）</td>
+                    <td><input class="input" type="password" name="pass_for_attend" id="pass_for_attend"></td>
+                </tr>
+                <tr>
+                    <td class="form_cell-label">パスワード<br>（管理者用）</td>
+                    <td><input class="input" type="password" name="pass_for_admin" id="pass_for_admin"></td>
+                </tr>
+            </table>
+            <div class="text-right"><input class="btn btn-m" type="button" onclick="create()" value="アカウント作成"></div>
+        </form>
+    </div>
     <script>
         async function create() {
             console.log("確認")

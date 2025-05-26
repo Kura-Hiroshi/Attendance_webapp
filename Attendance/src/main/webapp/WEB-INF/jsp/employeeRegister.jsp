@@ -10,23 +10,23 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 
 </head>
-<header>
-        <button onclick="window.location.href='SelectMethodServlet'">戻る</button>
-    </header>
 <body>
-    <h2>従業員の登録</h2>
-    <form id="register_form">
-        <table>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='SelectMethodServlet'">戻る</button>
+    </header>
+    <h2 class="text-center mb-4">従業員の登録</h2>
+    <form class="form-container-c">
+        <table class="form-table mb-2">
             <tr>
-                <td>従業員名</td>
-                <td><input type="text" name="name" id="name"></td>
+                <td class="form_cell-label">従業員名</td>
+                <td><input class="input" type="text" name="name" id="name"></td>
             </tr>
             <tr>
-                <td>パスワード</td>
-                <td><input type="password" name="pass" placeholder="パスワードを設定してください" id="pass"></td>
+                <td class="form_cell-label">パスワード</td>
+                <td><input class="input" type="password" name="pass" placeholder="パスワードを設定してください" id="pass"></td>
             </tr>
         </table>
-        <input type="button" value="登録" onclick="register()">
+        <input class="btn btn-m"  type="button" value="登録" onclick="register()">
     </form>
     <script>
         async function register() {

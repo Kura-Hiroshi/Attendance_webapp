@@ -10,32 +10,34 @@
 
 </head>
 <body>
-    <header>
-        <button onclick="window.location.href='index.jsp'">戻る</button>
+    <header class="mt-2 mb-4">
+        <button class="ma-2 btn btn-s" onclick="window.location.href='index.jsp'">戻る</button>
     </header>
     <c:choose>
         <c:when test="${admin ==null}">
             <!-- 管理者としてログインしていない場合 -->
-            <h1 class="text-center">勤怠管理者用システム</h1>
-            <h2 class="text-center">管理者用ログイン画面</h2>
-            <form class="block-center large-block">
-                <table>
+            <h1 class="mb-2 text-center">勤怠管理者用システム</h1>
+            <h2 class="mb-2 text-center">管理者用ログイン画面</h2>
+            <form class="form-container-c">
+                <table class="form_table">
                     <tr>
-                        <td class="text-justify">事業所ID</td>
-                        <td><input  type="text" name="company_id" id="company_id"></td>
+                        <td class="form_cell-label">事業所ID</td>
+                        <td><input class="input" type="text" name="company_id" id="company_id"></td>
                     </tr>
                     <tr>
-                        <td class="text-justify">パスワード（管理者用）</td>
-                        <td><input type="password" name="pass" id="pass"></td>
+                        <td class="form_cell-label">パスワード（管理者用）</td>
+                        <td><input class="input" type="password" name="pass" id="pass"></td>
                     </tr>
                 </table>
-                <input class="genbtn sbtn adjust-right" type="button" value="ログイン" onclick="login()">
+                <input class="btn btn-m" type="button" value="ログイン" onclick="login()">
             </form>
         </c:when>
         <c:otherwise>
         <!-- 管理者としてログイン済みの場合 -->
-        <button onclick="window.location.href='SelectMethodServlet'">管理者画面へ</button>
-        <button onclick="window.location.href='Logout?act=admin'">ログアウト</button>
+        <div class="form-container-r">
+            <button class="btn btn-xl mx-4" onclick="window.location.href='SelectMethodServlet'">管理者画面へ</button>
+            <button class="btn btn-xl mx-4" onclick="window.location.href='Logout?act=admin'">ログアウト</button>
+        </div>
         </c:otherwise>
     </c:choose>
     <script>

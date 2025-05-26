@@ -71,15 +71,30 @@ public class EmployeeLogic {
 		}
 	}
 	
-	public static List<Employee>  getAllemployee(String employeeId) throws Exception{
+	public static List<Employee>  getAllemployee(String companyId) throws Exception{
 		try(Connection con = DBUtil.getConnection()){
 				
-				return EmployeeDAO.findAllEmployee(employeeId, con);
+				return EmployeeDAO.findAllEmployee(companyId, con);
 				
 			
 		}catch(Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+	
+	public static String getEmployee(String companyId ,int employeeId ,String pass) throws Exception{
+		try(Connection con = DBUtil.getConnection()){
+			
+			Employee employee =  EmployeeDAO.findEmployeeById(employeeId,companyId ,pass, con);
+			if(employee==null) {
+				return "従業員名もしくはパスワードが違います。";
+			}
+			return null;
+			
+		
+	}catch(Exception e) {
+		throw new Exception(e.getMessage());
+	}
 	}
 	
 }

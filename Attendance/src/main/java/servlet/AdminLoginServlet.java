@@ -82,6 +82,7 @@ public class AdminLoginServlet extends HttpServlet {
 			//存在した場合
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", company);
+			session.setMaxInactiveInterval(3600);
 			data.put("success", true);
 		}
 		mapper.writeValue(out, data); 

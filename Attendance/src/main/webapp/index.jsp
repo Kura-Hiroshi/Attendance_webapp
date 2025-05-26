@@ -8,12 +8,12 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-<h1 class="text-center">勤怠管理アプリ</h1>
+<h1 class="text-center mt-4 mb-4">勤怠管理アプリ</h1>
 
-<div class="block-center large-block" >
-    <button class="genbtn innerblk" onclick="location.href='CompanyLoginServlet'">勤怠システム開始</button>
-    <button class="genbtn innerblk" onclick="location.href='AdminLoginServlet'">管理者入口</button>
-    <button class="genbtn innerblk" onclick="location.href='AccountCreate'">新規事業所登録</button>
+<div class="form-container-c" >
+    <button class="btn btn-l mb-4" onclick="location.href='CompanyLoginServlet'">勤怠システム開始</button>
+    <button class="btn btn-l mb-4" onclick="location.href='AdminLoginServlet'">管理者入口</button>
+    <button class="btn btn-l mb-4" onclick="location.href='AccountCreate'">新規アカウント作成</button>
 </div>
 </body>
 </html>

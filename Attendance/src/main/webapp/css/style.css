@@ -1,63 +1,210 @@
 /* 共通フォームスタイル */
+        /* 基本リセット & ベース設計 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff7f0;
-    height: 100vh;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #FFC287;
 }
 
-.genbtn{
-    display: block;
-    border-radius: 6px;
-    box-shadow: 5px 5px 5px rgb(90, 90, 90);
-    width: 200px;
-    height: 50px;
-    margin: 20px 0;
+.font_size_30{
+    font-size: 30px;
 }
 
-.genbtn:hover{
+/* コンテナ */
+.form-container-r {
+    display: flex;
+    justify-content: center;
+}
 
+.form-container-c{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* フォーム構造 */
+.form{
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.form_label {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.form_table {
+    /* width: 100%; */
+    table-layout: fixed;
+    border-spacing: 0 1rem;
+}
+
+.form_cell-label {
+    text-align: right;
+    padding-right: 1rem;
+    white-space: nowrap;
+    width: 30%;
+}
+
+/* 汎用インプット */
+.input {
+    /* width: 100%; */
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border 0.2s ease;
+}
+
+.input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); 
+    outline: none;
+}
+
+/* ボタン系 */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 1px solid;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-s {
+    padding: 0.25rem 0.5rem;   /* 高さ: 約8px、左右: 約16px */
+    font-size: 0.75rem;        /* 12px */
+}
+
+.btn-m {
+    padding: 0.5rem 1rem;      /* 高さ: 約16px、左右: 約32px */
+    font-size: 0.875rem;       /* 14px */
+    width: 8rem;
+}
+
+.btn-l {
+    padding: 0.75rem 1.5rem;   /* 高さ: 約24px、左右: 約48px */
+    font-size: 1rem;           /* 16px */
+    width: 13rem;
+}
+
+.btn-xl {
+    padding: 1rem 2rem;        /* 高さ: 約32px、左右: 約64px */
+    font-size: 1.5rem;       /* 18px */
+    width: 15rem;
+}
+
+
+.form_actions {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* シンプルなテーブル */
+.t-smp {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 1rem 0;
+}
+
+.th-smp, .td-smp {
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    text-align: left;
+}
+
+.th-smp {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+
+/* ユーティリティ*/
+.u-margin-y-lg {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .text-center{
     text-align: center;
 }
 
-.flex{
-    display: flex;
+.text-right{
+    text-align: right;
 }
 
-.block-center{
-    margin: 0 auto 0;
-    background-color: aqua;
+.testblue{
+    background-color: #2c80b4;
+}
+.testpink{
+    background-color: pink;
+}
+.mt-4{
+    margin-top: 4rem;
 }
 
-.large-block{
-    width: fit-content;
-    padding: 20px;
-    /* background-color: #fff7f0; */
+.mb-4{
+    margin-bottom: 4rem;
 }
 
-.innerblk{
-    margin: 40px auto;
+.mt-2{
+    margin-top: 2rem;
 }
 
-.container{
-
+.mb-2{
+    margin-bottom: 2rem;
 }
 
-.text-justify{
-    text-align: justify;
+.ma-2{
+    margin: 2rem;
 }
 
-.sbtn{
-    width: 100px;
-    height: 30px;
-    font-size: 0.8rem;
+.mx-4{
+    margin: 0 4rem;
 }
 
-.adjust-right{
-    margin:0 10px 0 auto;
+.btn-real {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #2c80b4;
+    transition: all 0.1s ease;
+    position: relative;
+    top: 0;
 }
+
+.btn-real:active {
+    top: 2px;
+    box-shadow: 0 2px 0 #2c80b4;
+}
+
+
 
 /* ページ個別のスタイル
     ページごとに接頭辞をつけて区別する*/
