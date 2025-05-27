@@ -10,20 +10,22 @@
 </head>
 <body>
     <header class="mt-2 mb-4">
-        <button class="ma-2 btn btn-s" onclick="window.location.href='SelectMethodServlet'">戻る</button>
+        <button class="ma-2 btn btn-s" onclick="window.location.href='EmployeeAdminServlet'">戻る</button>
     </header>
     <h2 class="text-center mb-4">従業員の削除</h2>
-    <form class="form-container-c" action="EmployeeDeleteServlet" method="post" id="deleteform">
-        <div class="mb-2">
-            従業員名：<select class="input" name="employee_id" id="employee_id">
-                <option value="">--削除対象者を選択してください--</option>
-                <c:forEach var="employee" items="${employeeList}">
-                    <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>
-                </c:forEach>
-            </select>
-        </div>
-        <input class="btn btn-m" type="button" value="削除" onclick="delemp()">
-    </form>
+    <div class="form-container-c">
+        <form class="form" action="EmployeeDeleteServlet" method="post" id="deleteform">
+            <div class="mb-2">
+                従業員名：<select class="input" name="employee_id" id="employee_id">
+                    <option value="">--削除対象者を選択してください--</option>
+                    <c:forEach var="employee" items="${employeeList}">
+                        <option value=<c:out value="${employee.id}" />><c:out value="${employee.id}" />:<c:out value="${employee.name}" /></option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="text-right"><input class="btn btn-m" type="button" value="削除" onclick="delemp()"></div>
+        </form>
+    </div>
 
     <script>
         async function delemp(){

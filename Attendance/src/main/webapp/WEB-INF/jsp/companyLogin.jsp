@@ -5,18 +5,18 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>勤怠記録画面</title>
+<title>タイムカード機能</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <c:choose>
         <c:when test="${company ==null}">
-            <!-- 勤怠システムにログインしていない場合 -->
+            <!-- ログインしていない場合 -->
             <header class="mt-2 mb-4">
                 <button class="ma-2 btn btn-s" onclick="window.location.href='index.jsp'">戻る</button>
             </header>
-            <h1 class="text-center mt-4 mb-4">勤怠入力システム</h1>
-            <h3 class="text-center mb-4">勤怠入力システムログイン画面</h3>
+            <h1 class="text-center mt-4 mb-4">タイムカード機能</h1>
+            <h3 class="text-center mb-4">事業所ログイン画面</h3>
             <div class="form-container-c">
                 <form class="form" action="CompanyLoginServlet" method="post">
                     <table class="form_table">
@@ -34,10 +34,10 @@
             </div>
         </c:when>
         <c:otherwise>
-            <!-- 勤怠システムにログイン済みの場合 -->
-            <div class="form-container-r">
-                <button class="btn btn-xl mx-4" onclick="window.location.href='SelectTypeServlet'">勤怠システムへ</button>
-                <button class="btn btn-xl mx-4" onclick="window.location.href='Logout?act=attend'">ログアウト</button>
+            <!-- ログイン済みの場合 -->
+            <div class="form-container-r mt-8">
+                <button class="btn btn-xl mx-4" onclick="window.location.href='SelectTypeServlet'">タイムカード機能へ</button>
+                <button class="btn btn-xl mx-4" onclick="window.location.href='Logout'">ログアウト</button>
             </div>
         </c:otherwise>
     </c:choose>

@@ -11,6 +11,7 @@
 <body>
     <header class="mt-2 mb-4">
         <button class="ma-2 btn btn-s" onclick="window.location.href='SelectMethodServlet'">戻る</button>
+        <h3 class="text-center"><c:out value="${admin.companyName}" /></h3>
     </header>
     <h2 class="mb-2 text-center">従業員名簿</h2>
     <div class="form-container-c">

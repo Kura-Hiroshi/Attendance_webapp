@@ -25,12 +25,7 @@ public class Logout extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = request.getSession();
-		String act = request.getParameter("act");
-		if(act.equals("admin")) {
-			session.removeAttribute("admin");			
-		}else if(act.equals("attend")) {
-			session.removeAttribute("company");
-		}
+		session.invalidate();
 		
 		response.sendRedirect("index.jsp");
 	}

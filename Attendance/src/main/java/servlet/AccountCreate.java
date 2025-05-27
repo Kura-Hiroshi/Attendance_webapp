@@ -62,7 +62,7 @@ public class AccountCreate extends HttpServlet {
 			msg = "パスワードに使える文字は8文字以上100文字以下の半角英数字です";
 		}
 		
-		if(msg != null) {
+		if(msg == null) {
 			//この時点でmsgにメッセージが格納されている場合にはデータベース処理はしない。
 			try {
 				//パスワードのハッシュ化
@@ -76,6 +76,7 @@ public class AccountCreate extends HttpServlet {
 				msg = e.getMessage();
 			}
 		}
+		
 		
 		response.setContentType("application/json; charset=UTF-8");
 		HttpSession session = request.getSession();

@@ -25,6 +25,7 @@ public class CompanyDAO {
                 }
             }
         }catch (SQLException e) {
+        	e.printStackTrace();
 			throw new SQLException("ログインできませんでした。しばらくしてから再度お試しください。");
         }
 

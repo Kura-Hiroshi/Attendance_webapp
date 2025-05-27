@@ -17,19 +17,19 @@
             <table class="form_table">
                 <tr>
                     <td class="form_cell-label">事業所ID</td>
-                    <td><input class="input" type="text" name="company_id" id="company_id"></td>
+                    <td><input class="input" type="text" name="company_id" id="company_id" placeholder="半角英数字8文字以上"></td>
                 </tr>
                 <tr>
                     <td class="form_cell-label">事業所名</td>
-                    <td><input class="input" type="text" name="company_name" id="company_name"></td>
+                    <td><input class="input" type="text" name="company_name" id="company_name" placeholder=""></td>
                 </tr>
                 <tr>
-                    <td class="form_cell-label">パスワード<br>（勤怠システム用）</td>
-                    <td><input class="input" type="password" name="pass_for_attend" id="pass_for_attend"></td>
+                    <td class="form_cell-label">パスワード<br>（タイムカード機能用）</td>
+                    <td><input class="input" type="password" name="pass_for_attend" id="pass_for_attend" placeholder="半角英数字8文字以上"></td>
                 </tr>
                 <tr>
                     <td class="form_cell-label">パスワード<br>（管理者用）</td>
-                    <td><input class="input" type="password" name="pass_for_admin" id="pass_for_admin"></td>
+                    <td><input class="input" type="password" name="pass_for_admin" id="pass_for_admin" placeholder="半角英数字8文字以上"></td>
                 </tr>
             </table>
             <div class="text-right"><input class="btn btn-m" type="button" onclick="create()" value="アカウント作成"></div>

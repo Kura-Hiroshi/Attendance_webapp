@@ -18,25 +18,27 @@
             <!-- 管理者としてログインしていない場合 -->
             <h1 class="mb-2 text-center">勤怠管理者用システム</h1>
             <h2 class="mb-2 text-center">管理者用ログイン画面</h2>
-            <form class="form-container-c">
-                <table class="form_table">
-                    <tr>
-                        <td class="form_cell-label">事業所ID</td>
-                        <td><input class="input" type="text" name="company_id" id="company_id"></td>
-                    </tr>
-                    <tr>
-                        <td class="form_cell-label">パスワード（管理者用）</td>
-                        <td><input class="input" type="password" name="pass" id="pass"></td>
-                    </tr>
-                </table>
-                <input class="btn btn-m" type="button" value="ログイン" onclick="login()">
-            </form>
+            <div class="form-container-c">
+                <form class="form">
+                    <table class="form_table">
+                        <tr>
+                            <td class="form_cell-label">事業所ID</td>
+                            <td><input class="input" type="text" name="company_id" id="company_id"></td>
+                        </tr>
+                        <tr>
+                            <td class="form_cell-label">パスワード（管理者用）</td>
+                            <td><input class="input" type="password" name="pass" id="pass"></td>
+                        </tr>
+                    </table>
+                    <div class="text-right"><input class="btn btn-m" type="button" value="ログイン" onclick="login()"></div>
+                </form>
+            </div>
         </c:when>
         <c:otherwise>
         <!-- 管理者としてログイン済みの場合 -->
         <div class="form-container-r">
             <button class="btn btn-xl mx-4" onclick="window.location.href='SelectMethodServlet'">管理者画面へ</button>
-            <button class="btn btn-xl mx-4" onclick="window.location.href='Logout?act=admin'">ログアウト</button>
+            <button class="btn btn-xl mx-4" onclick="window.location.href='Logout'">ログアウト</button>
         </div>
         </c:otherwise>
     </c:choose>

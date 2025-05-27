@@ -5,14 +5,15 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>勤怠入力システム</title>
+<title>タイムカード機能</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
     <header class="mt-2 mb-4">
         <button class="ma-2 btn btn-s" onclick="window.location.href='SelectTypeServlet'">戻る</button>
+        <h3 class="text-center"><c:out value="${company.companyName}" /></h3>
     </header>
-    <h1 class="mb-2 text-center">勤怠入力システム</h1>
+    <h1 class="mb-2 text-center">タイムカード機能</h1>
     <h2 class="mb-2 text-center"><c:out value="${eventType}"/></h2>
     <div class="form-container-c">
         <form class="form" action=""  autocomplete="off">
