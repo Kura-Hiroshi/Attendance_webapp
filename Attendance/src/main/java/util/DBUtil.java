@@ -4,6 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+
+/**
+ *データベース接続用のユーティリティークラス
+ *ドライバーのロードと接続を行う 
+ */
 public class DBUtil {
 	private static final String DRIVER = "org.h2.Driver";
 	private static final String URL = "jdbc:h2:tcp://localhost/~/Desktop/勤怠管理アプリ/Attendance_webapp/Attendance/DB/AttendanceDB";

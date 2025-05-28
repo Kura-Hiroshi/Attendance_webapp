@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ *従業員クラス
+ *このクラスは従業員１人分を表します。 
+ */
 public class Employee implements Serializable {
 	private String companyId;
 	private int id;

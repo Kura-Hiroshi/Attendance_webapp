@@ -71,25 +71,39 @@ public class EmployeeDAO {
 		}
 	}
 	
-	public static int delete(int employeeId,String companyID,Connection con	) throws SQLException{
-		try {
-			PreparedStatement pstmt = con.prepareStatement("""
-					DELETE FROM ATTENDANCE
-					WHERE company_id =? AND employee_id = ?;
-					DELETE FROM EMPLOYEE
-					WHERE company_id =? AND id = ?;
-					""");
-			pstmt.setString(1, companyID);
-			pstmt.setInt(2, employeeId);
-			pstmt.setString(3, companyID);
-			pstmt.setInt(4, employeeId);
-			int r = pstmt.executeUpdate();
-			return r;
-			
-		} catch (SQLException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			throw new SQLException("データベースで従業員の削除に失敗しました。");
-		}
+	public static int delete(int employeeId, String companyID, Connection con) throws SQLException {
+	    try {
+	        con.setAutoCommit(false);  // トランザクション開始
+	        
+	        int totalDeleted = 0;
+	        
+	        // ATTENDANCE削除
+	        try (PreparedStatement pstmt1 = con.prepareStatement(
+	                "DELETE FROM ATTENDANCE WHERE company_id = ? AND employee_id = ?")) {
+	            pstmt1.setString(1, companyID);
+	            pstmt1.setInt(2, employeeId);
+	            totalDeleted += pstmt1.executeUpdate();
+	        }
+	        
+	        // EMPLOYEE削除
+	        try (PreparedStatement pstmt2 = con.prepareStatement(
+	                "DELETE FROM EMPLOYEE WHERE company_id = ? AND id = ?")) {
+	            pstmt2.setString(1, companyID);
+	            pstmt2.setInt(2, employeeId);
+	            totalDeleted += pstmt2.executeUpdate();
+	        }
+	        
+	        con.commit();  // コミット
+	        
+	        return totalDeleted;  // 両方の削除行数の合計を返す
+	        
+	    } catch (SQLException e) {
+	        con.rollback();  // ロールバック
+	        e.printStackTrace();
+	        throw new SQLException("データベースで従業員の削除に失敗しました。");
+	    } finally {
+	        con.setAutoCommit(true);  // 自動コミットに戻す
+	    }
 	}
+
 }

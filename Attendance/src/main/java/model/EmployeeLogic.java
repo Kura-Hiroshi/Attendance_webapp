@@ -8,7 +8,14 @@ import dao.EmployeeDAO;
 import dao.NextIdNumDAO;
 import util.DBUtil;
 
+
+
+/**
+ *EMPLOYEEテーブルにかかわる操作をまとめるロジック層のクラス 
+ */
 public class EmployeeLogic {
+	/** 従業員を登録するメソッド 
+	 */
 	public static Employee registerEmployee(Company company,String employeeName,String pass) throws Exception {
 		Connection con = null;
 		try {
@@ -59,7 +66,6 @@ public class EmployeeLogic {
 				int r = EmployeeDAO.delete(employeeId, companyId, con);
 				
 				con.commit();
-				
 				return r;
 			}catch(Exception e){
 				e.printStackTrace();

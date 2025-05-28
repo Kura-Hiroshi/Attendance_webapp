@@ -9,8 +9,8 @@ DELETE FROM COMPANY;
 
 -- COMPANYテーブルのデータ
 INSERT INTO COMPANY (id, company_name, clock_pass, admin_pass) VALUES 
-('C001', '株式会社テストA', '1234', '1234'),
-('C002', '株式会社テストB', '1234', '1234');
+('C001', '株式会社テストA', 'abcd1234', 'abcd1234'),
+('C002', '株式会社テストB', 'abcd1234', 'abcd1234');
 
 -- EMPLOYEEテーブルのデータ
 INSERT INTO EMPLOYEE (id, company_id, employee_name, pass) VALUES 

@@ -17,7 +17,7 @@
     </header>
     <h2 class="text-center mb-4">従業員の登録</h2>
     <div class="form-container-c">
-        <form class="form">
+        <form class="form" id="form">
             <table class="form-table mb-2">
                 <tr>
                     <td class="form_cell-label">従業員名</td>
@@ -35,7 +35,7 @@
         async function register() {
             const name = document.querySelector('#name');
             const pass = document.querySelector('#pass');
-            const form = document.querySelector('#register_form');
+            const form = document.querySelector('#form');
             const response = await fetch("EmployeeRegisterServlet", {
                 method: "POST",
                 headers: {

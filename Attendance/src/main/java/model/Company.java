@@ -3,6 +3,12 @@ package model;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+
+/**
+ *事業所クラス
+ *このクラスは事業所１件分を表します。 
+ */
 public class Company implements Serializable{
 	private String id;
 	private String companyName;

@@ -83,7 +83,6 @@ public class OutAttendance extends HttpServlet {
 			}
 			
 		}
-		System.out.println(msg);
 		//登録処理の結果に応じて分岐する
         response.setContentType("application/json; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");

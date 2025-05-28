@@ -45,7 +45,7 @@
                 const data = await response.json();
                 if (data["success"]) {
                     alert("削除しました");
-                    form.reset;
+                    window.location.href = 'EmployeeDeleteServlet';
                 } else {
                     alert(data['msg']);                    
                 }

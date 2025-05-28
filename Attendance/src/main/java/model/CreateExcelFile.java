@@ -14,6 +14,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+/**
+ *Excelファイルを作成し、ストリームへ出力するメソッドを持つクラス。 
+ */
 public class CreateExcelFile {
     public static void create(List<AttendanceViewDTO> attendanceList, OutputStream os) throws Exception {
         try (Workbook workbook = new XSSFWorkbook()) {

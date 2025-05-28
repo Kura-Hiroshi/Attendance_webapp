@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -7,7 +8,12 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class AttendanceDTO {
+
+/**
+ * ATTENDANCEテーブルの１件分の情報を格納するクラス
+ * AttendanceDAOからの検索結果を受け取る
+ */
+public class AttendanceDTO implements Serializable{
 	private int id;
 	private String companyId;
 	private int employeeId;

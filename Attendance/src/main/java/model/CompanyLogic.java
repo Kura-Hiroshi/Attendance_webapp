@@ -6,7 +6,11 @@ import dao.CompanyDAO;
 import dao.NextIdNumDAO;
 import util.DBUtil;
 
+/**
+ *COMOANYテーブルへの操作を担当するロジック層のクラス 
+ */
 public class CompanyLogic {
+	/** タイムカード機能へのログインを認証するメソッド */
     public static Company attendanceLogin(String companyId , String attendPass) throws Exception {
         try (Connection con = DBUtil.getConnection()) {
         	Company company =CompanyDAO.findCompanyById(companyId, con); 
@@ -19,6 +23,7 @@ public class CompanyLogic {
         return null;
     }
     
+    /** 管理者ページへのログインを認証するメソッド */
     public static Company adminLogin(String companyId , String adminPass) throws Exception {
     	try (Connection con = DBUtil.getConnection()) {
     		Company company =CompanyDAO.findCompanyById(companyId, con); 
@@ -31,6 +36,7 @@ public class CompanyLogic {
     	return null;
     }
     
+    /** 新規に事業所アカウントを作成するメソッド */
     public static Company accountCreate(String companyId,String companyName,String passForAttend,String passForAdmin) throws Exception{
     	try (Connection con = DBUtil.getConnection()) {
     		Company company =CompanyDAO.findCompanyById(companyId, con);

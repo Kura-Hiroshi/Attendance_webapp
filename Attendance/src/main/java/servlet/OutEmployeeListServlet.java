@@ -17,7 +17,7 @@ import model.Employee;
 import model.EmployeeLogic;
 
 /**
- * Servlet implementation class OutEmployeeListServlet
+ * 従業員一覧ページにかかわるサーブレット
  */
 @WebServlet("/OutEmployeeListServlet")
 public class OutEmployeeListServlet extends HttpServlet {

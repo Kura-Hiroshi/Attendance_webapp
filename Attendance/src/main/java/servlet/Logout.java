@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Logout
+ * ログアウト（セッションスコープを破棄）するサーブレット
  */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {

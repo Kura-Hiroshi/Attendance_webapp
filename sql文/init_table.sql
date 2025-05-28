@@ -1,4 +1,4 @@
---テーブルの中身の全削除　扱い注意！
+--テーブルの中身の全削除　取り扱い注意！
 
 DELETE FROM EMPLOYEE_NUM;
 DELETE FROM ATTENDANCE;
