@@ -101,7 +101,7 @@ public class CreateExcelFile {
                 // 勤務時間（数式）
                 Cell formulaCell = row.createCell(6);
                 String excelFormula = String.format(
-                    "IF(OR(D%d=\"\",E%d=\"\"),\"？\",TEXT((E%d-D%d)-TIME(0,F%d,0),\"hh:mm\"))",
+                    "IF(OR(D%d=\"\",E%d=\"\"),\"？\",TEXT((E%d-D%d)-TIME(0,IF(F%d=0,0,F%d),0),\"hh:mm\"))",
                     rowIdx + 1, rowIdx + 1, rowIdx + 1, rowIdx + 1, rowIdx + 1
                 );
                 formulaCell.setCellFormula(excelFormula);
